@@ -82,8 +82,8 @@ The model code, the fold-derivation inputs, the figures, and an interactive
 browser viewer are publicly available at
 [github.com/hwe001/apap-zonation](https://github.com/hwe001/apap-zonation).
 The submission version analysed in this paper is permanently available as
-release v1.0.0
-([github.com/hwe001/apap-zonation/releases/tag/v1.0.0](https://github.com/hwe001/apap-zonation/releases/tag/v1.0.0));
+release v1.1.0
+([github.com/hwe001/apap-zonation/releases/tag/v1.1.0](https://github.com/hwe001/apap-zonation/releases/tag/v1.1.0));
 a DOI will be minted for this release via Zenodo on acceptance. The viewer
 (`viewer.html`) displays precomputed simulations of the five model
 species across the 16 hepatocytes, both doses, and both gradient schemes; it is
