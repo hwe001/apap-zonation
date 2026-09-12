@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Build artifacts / intermediate outputs
+results/
+*.docx
+*.xlsx
+*.pdf
+
+# Internal working notes (contain local filesystem paths)
+paper_outline.md
+publication_lineage_and_strategy.md
+spatial_liver_zonation_datasets.md
+related_computational_models.md
+hepatotoxicity_validation_data.md
+
+# Temporary files
+~$*
+*_check*.txt
+*.tmp
