@@ -25,6 +25,7 @@ FILES = [
     "manuscript/Methods_Results_draft.md",
     "manuscript/Discussion_draft.md",
     "manuscript/References_draft.md",
+    "manuscript/Supplementary_Methods.md",
 ]
 
 INLINE = re.compile(r"(\*\*.+?\*\*|\*[^*\s][^*]*\*)")

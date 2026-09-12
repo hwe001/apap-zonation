@@ -79,9 +79,11 @@ this repository. `viewer.html` displays **precomputed** simulations (not live
 model runs) of the five species across the 16 hepatocytes, both doses, and both
 gradient schemes. The measured zonation folds are re-derived from the
 single-cell deep-visual proteomics bin profiles (Weiss et al., *Nat Metab* 2026)
-as documented in `data/measured_zonation_coefficients.md` and
-`data/fold_derivation.md`. A versioned archive (DOI) of the submission version
-will be cited in the paper; the GitHub link points to the current version.
+as documented in `manuscript/Supplementary_Methods.md` (per-protein bin values,
+calculated ratios, and uncertainty inputs) and summarised in
+`data/measured_zonation_coefficients.md`. A versioned archive (DOI) of the
+submission version will be cited in the paper; the GitHub link points to the
+current version.
 
 ## License
 

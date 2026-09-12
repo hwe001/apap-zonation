@@ -47,9 +47,10 @@ depend on zonal enzyme assumptions.
 
 **Limitations.** The folds are protein abundances, and abundance is a proxy for
 catalytic capacity, not capacity itself — no lobule-resolved activity data exist.
-The proteomic folds are cohort-level; donor-level uncertainty was approximated by
-the protein–mRNA span rather than measured directly, so the simulation intervals
-in Fig. 4 are a lower bound on the true uncertainty. The model is a 16-cell
+The proteomic folds are cohort-level; donor-level variation was not measured and
+is not represented in the simulation intervals, so the intervals in Fig. 4
+describe scenario uncertainty over fold ranges, not donor-level sampling
+uncertainty. The model is a 16-cell
 sinusoid without transport, so it quantifies the consequences of the gradients
 but cannot resolve transport-coupled questions; we deliberately frame it as a
 zonation-sensitivity study rather than a full reconstruction. The adduct
@@ -67,3 +68,14 @@ other and nearly cancel, leaving a small, uncertain net response. The stability
 test that yields this answer is the transferable contribution — a way to ask, of
 any zonated toxicity model, which predictions are robust to the one assumption
 that has been least examined.
+
+## Code and data availability
+
+The model code, the fold-derivation inputs, the figures, and an interactive
+browser viewer are publicly available at
+[github.com/hwe001/apap-zonation](https://github.com/hwe001/apap-zonation).
+The viewer (`viewer.html`) displays precomputed simulations of the five model
+species across the 16 hepatocytes, both doses, and both gradient schemes; it is
+intended for inspecting the results and does not constitute validation evidence.
+A versioned archive (DOI) of the submission version will be cited here on
+acceptance.

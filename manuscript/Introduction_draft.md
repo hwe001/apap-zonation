@@ -37,9 +37,10 @@ gradients with measured human profiles, and which do not?
 We answer it in three steps. First, we derive per-enzyme abundance folds from the
 proteomic bin profiles — not from the published regression coefficients, which
 are not fold changes — and document the conversion and its uncertainty (Section
-2.2). Second, we impose these folds on the 16-hepatocyte model with total enzyme
+2.3; per-protein inputs in the Supplementary Methods). Second, we impose these
+folds on the 16-hepatocyte model with total enzyme
 conserved, and propagate isoform and protein–mRNA uncertainty by Monte Carlo
-(Sections 2.3–2.5). Third, we report which predictions survive (Section 3). The
+(Sections 2.4–2.5). Third, we report which predictions survive (Section 3). The
 result is a dose-dependent stability boundary: at the therapeutic single dose the
 assumed gradients robustly overestimate the pericentral adduct burden, whereas at
 overdose the individual gradient corrections remain large but oppose each other,
