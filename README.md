@@ -17,12 +17,14 @@ those enzymes; this work replaces them with *measured* human single-cell spatial
 proteomics and asks a stability question: **which predictions survive the
 replacement, and which do not?**
 
-The headline result is dose-dependent: at the therapeutic single dose (4 g) the
-assumed gradients overestimate the pericentral adduct burden (~90% over-correction),
-while at overdose (16 g) the individual gradient corrections remain large but
-**oppose each other** — the shallower glutathione-synthesis and CYP gradients
-reduce adducts, the shallower glucuronidation gradient increases them — so the
-net response is small and uncertain.
+The headline result is dose-dependent: at the simulated 4 g single dose the
+assumed gradients overestimate the pericentral adduct burden (~93% reduction on
+replacement, 90% interval −96 to −89%), the reduction fades smoothly at 8 g
+(−37%), and at the simulated 16 g single dose the individual gradient corrections
+remain large but **oppose each other** — the shallower glutathione-synthesis and
+CYP gradients reduce adducts, the shallower glucuronidation gradient increases
+them — so the net response is small and uncertain (median −7%, interval −13 to
++0.3%).
 
 ## Try it in your browser — no installation
 
@@ -32,7 +34,7 @@ per-hepatocyte time courses as interactive heatmaps with:
 - a **time slider / play** to animate the concentration wave along the sinusoid,
 - a **species** selector (APAP, PAPS, NAPQI, glutathione, protein adducts),
 - an **assumed vs measured** gradient toggle,
-- a **dose** selector (4 g and 16 g).
+- a **dose** selector (4 g, 8 g and 16 g).
 
 The data are precomputed and embedded, so the file is fully self-contained. It is
 a companion for *inspecting* the results, not evidence that validates the model —
@@ -44,6 +46,7 @@ the manuscript's figures and numerical results are self-contained.
 pip install -r requirements.txt
 python code/zonated_apap_model.py   # model + one-at-a-time decomposition
 python code/uncertainty.py          # Monte Carlo uncertainty (saves results/*.npz)
+python code/null_sensitivity.py     # sensitivity to the assumed (null) gradient values
 python code/make_figures.py         # regenerate figures/ (needs uncertainty.py first)
 python code/make_viewer.py          # regenerate viewer.html
 ```

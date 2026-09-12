@@ -20,17 +20,33 @@ from zonated_apap_model import run, am_fold  # noqa: E402
 
 # Fold ranges (central/portal), defensible spans:
 RANGES = {
-    "k450": (1.9, 6.9),    # CYP2E1 .. CYP1A2 protein folds (CYP3A4 3.5x inside)
+    # k450 is sampled via isoform-weighted combination (see sample_measured);
+    # the raw protein folds are CYP2E1 1.91, CYP1A2 6.87, CYP3A4 3.52.
     "kG":   (1.4, 2.1),    # UGT2B7 .. UGT1A1 protein folds
     "kS":   (0.9, 1.1),    # SULT1A1 ~uniform, +/-10% (uncertainty on "unzonated")
     "kGSH": (1.16, 3.4),   # GSTA2 protein (1.16x) .. mRNA (3.4x)
     "bG":   (0.9, 1.1),    # GCLC/GCLM/GSS ~uniform, +/-10%
 }
 
+# CYP isoform protein folds and approximate relative contributions to human
+# APAP oxidation (Laine et al. 2009, Xenobiotica 39:11-21: CYP2E1 dominant,
+# CYP1A2 secondary, CYP3A4 minor). Weight ranges reflect the spread of published
+# estimates; weights are renormalised after sampling.
+CYP_FOLDS = {"2E1": 1.91, "1A2": 6.87, "3A4": 3.52}
+CYP_WEIGHT_RANGES = {"2E1": (0.50, 0.70), "1A2": (0.15, 0.30)}  # 3A4 = remainder
+
+
+def sample_cyp_fold(rng):
+    w2 = rng.uniform(*CYP_WEIGHT_RANGES["2E1"])
+    w1 = rng.uniform(*CYP_WEIGHT_RANGES["1A2"])
+    w3 = max(1.0 - w2 - w1, 0.05)
+    tot = w2 + w1 + w3
+    return (w2 * CYP_FOLDS["2E1"] + w1 * CYP_FOLDS["1A2"] + w3 * CYP_FOLDS["3A4"]) / tot
+
 
 def sample_measured(rng):
-    """Sample a 'measured' scheme: each fold drawn log-uniform over its range."""
-    s = {}
+    """Sample a 'measured' scheme: each fold drawn over its defensible range."""
+    s = {"k450": am_fold(sample_cyp_fold(rng), central=True)}
     for p, (lo, hi) in RANGES.items():
         F = np.exp(rng.uniform(np.log(lo), np.log(hi)))
         s[p] = am_fold(F, central=True)  # F~1 for kS/bG -> near-uniform either way
@@ -44,10 +60,11 @@ def pericentral_peak(dose, scheme):
 
 def main():
     rng = np.random.default_rng(0)
-    N = 400
+    N = 300
     saved = {}
+    doses = (4.0, 8.0, 16.0)
 
-    for dose in (4.0, 16.0):
+    for dose in doses:
         base = pericentral_peak(dose, "assumed")
         changes = []
         for _ in range(N):
@@ -66,7 +83,7 @@ def main():
 
     out = Path(__file__).resolve().parent.parent / "results" / "uncertainty_changes.npz"
     out.parent.mkdir(parents=True, exist_ok=True)
-    np.savez(out, changes_4g=saved[4.0], changes_16g=saved[16.0])
+    np.savez(out, changes_4g=saved[4.0], changes_8g=saved[8.0], changes_16g=saved[16.0])
     print(f"saved {out}")
 
 

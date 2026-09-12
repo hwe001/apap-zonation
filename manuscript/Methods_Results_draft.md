@@ -92,7 +92,7 @@ catalytic capacity, not capacity itself; no lobule-resolved activity data exist.
 
 | Parameter | Enzyme | Assumed (prior models) | Measured (protein bin-ratio) |
 |---|---|---|---|
-| k450 | CYP450 | 5× pericentral | 1.9× (CYP2E1; range 1.9–6.9× across isoforms) |
+| k450 | CYP450 | 5× pericentral | 3.4× (isoform-weighted: CYP2E1/1A2/3A4 = 0.60/0.25/0.15; raw isoform folds 1.9–6.9×) |
 | kG | UGT | 9× pericentral | 1.4× (UGT2B7; range 1.4–2.1×) |
 | kS | SULT | 9× periportal | unzonated (SULT1A1 0.99×) |
 | kGSH | GST | 9× periportal | 1.2× pericentral (GSTA2; reversed direction) |
@@ -102,16 +102,25 @@ catalytic capacity, not capacity itself; no lobule-resolved activity data exist.
 
 The five enzyme parameters (k450, kG, kS, kGSH, bG) were assigned the measured
 folds; sulfation (kS) and GSH synthesis (bG) are unzonated, and GSH conjugation
-(kGSH) is weakly pericentral rather than periportal. To test robustness, we
-propagated the fold uncertainty by 400-draw Monte Carlo, sampling each fold
-log-uniformly over an explicitly chosen range: k450 ∈ [1.9, 6.9] (the CYP2E1-to-
-CYP1A2 isoform span), kG ∈ [1.4, 2.1] (UGT2B7-to-UGT1A1), kGSH ∈ [1.16, 3.4]
-(the protein-to-mRNA span for GSTA2), and kS, bG ∈ [0.9, 1.1] (±10% around
-uniform, representing the uncertainty in the "unzonated" finding). We report the
+(kGSH) is weakly pericentral rather than periportal. Because the CYP isoforms
+contribute very unequally to human APAP oxidation — CYP2E1 dominates, CYP1A2 is
+secondary, CYP3A4 minor (Laine et al. 2009) — the k450 fold is the
+isoform-weighted combination 0.60·(CYP2E1 fold) + 0.25·(CYP1A2) + 0.15·(CYP3A4)
+= 3.4×, rather than the raw isoform span. To test robustness, we propagated the
+fold uncertainty by 300-draw Monte Carlo at three simulated doses (4, 8 and
+16 g). The k450 fold was sampled by drawing the isoform weights over plausible
+ranges (CYP2E1 0.50–0.70, CYP1A2 0.15–0.30, CYP3A4 the renormalised remainder)
+and recomputing the weighted fold; kG was sampled log-uniformly over [1.4, 2.1]
+(UGT2B7-to-UGT1A1); kGSH over [1.16, 3.4] (the protein-to-mRNA span for GSTA2);
+and kS, bG over [0.9, 1.1] (±10% around uniform — a stated assumption for the
+width, not an estimated dispersion). We report the
 distribution of the resulting change in pericentral adduct burden relative to the
 assumed gradients. The assumed
 (literature) gradients are held fixed as the null hypothesis being tested; only
-the measured folds are varied.
+the measured folds are varied. Because the 5×/9× assumed folds are themselves
+stylised (the prior models specify qualitative "strong" gradients), we also
+re-ran the 4 g comparison against 27 variants of the assumed gradients (CYP
+3–7×; UGT and the periportal gradients 6–12×).
 
 ### 2.5 Numerical analysis
 
@@ -135,53 +144,64 @@ so — sulfation (SULT1A1, fold 0.99×) and glutathione synthesis (GCLC/GCLM/GSS
 folds ~1.0×) — where the prior models imposed strong periportal gradients. The
 glutathione-conjugation gradient is reversed in direction (GSTA2 is weakly
 pericentral, 1.2×, rather than strongly periportal). The two gradients that keep
-their assumed direction — CYP450 and glucuronidation — are both far shallower
-than assumed (1.9× and 1.4× versus 5× and 9×). The single exception is CYP1A2,
-whose protein fold (6.9×) is steeper than the assumed 5×, and it is this isoform
-spread that makes the CYP correction the largest source of uncertainty.
+their assumed direction — CYP450 and glucuronidation — are both shallower than
+assumed: weighted by the isoforms' approximate contributions to human APAP
+oxidation (CYP2E1 ≈ 0.60, CYP1A2 ≈ 0.25, CYP3A4 ≈ 0.15; Laine et al. 2009), the
+CYP fold is 3.4× versus the assumed 5×, and glucuronidation 1.4× versus 9×.
+CYP1A2's raw protein fold (6.9×) does exceed the assumed 5×, but its minor
+contribution to APAP oxidation leaves the weighted CYP fold below the
+assumption; isoform uncertainty therefore enters through the weighting (Section
+2.4) rather than through the raw isoform span.
 
 [[FIG fig2_gradients.png | Assumed versus measured zonation gradients for the five enzyme parameters, as a fold-change relative to a uniform baseline (1×). Orange dashed: the literature-derived gradient carried by prior models; blue solid: the gradient re-derived from the 2026 proteomic bin profiles. Sulfation and GSH synthesis are unzonated; GSH conjugation is reversed (weakly pericentral); CYP450 and glucuronidation retain direction but are far shallower than assumed.]]
 
 ### 3.2 Gradient replacement reduces predicted pericentral adducts at the simulated 4 g single dose
 
 Replacing the assumed gradients with the measured ones reduces the predicted
-pericentral adduct burden at the simulated 4 g single dose by 96% (Table 3):
-the peak pericentral adduct falls from 1.1 × 10⁻³ to 4.7 × 10⁻⁵ nmol per
-hepatocyte (0.83% to 0.036% of the dose). The
-reduction is dominated by two corrections: flattening the glutathione-synthesis
-gradient (−83%), which raises pericentral glutathione, and flattening the CYP
-gradient (−25%), which lowers pericentral NAPQI formation. The glucuronidation
+pericentral adduct burden at the simulated 4 g single dose by 90% (Table 3):
+the peak pericentral adduct falls from 1.1 × 10⁻³ to 1.1 × 10⁻⁴ nmol per
+hepatocyte (0.83% to 0.085% of the dose). The
+reduction is dominated by flattening the glutathione-synthesis
+gradient (−83%), which raises pericentral glutathione; the CYP
+correction (−8.5%) and the sulfation correction (−9%) are secondary, and the
+glucuronidation
 correction (+52%) acts in the opposite direction — a shallower glucuronidation
 gradient leaves more APAP available for oxidation — but is outweighed by the
-glutathione and CYP effects.
+glutathione effect.
 
 [[FIG fig3_damage.png | Predicted peak adduct fraction of dose along the sinusoid at 4 g and 16 g, for the assumed (orange dashed) and measured (blue solid) gradients. At the simulated 4 g single dose the measured gradients predict a substantially lower, less sharply zoned pericentral adduct burden; at the simulated 16 g single dose the two are similar.]]
 
 ### 3.3 At overdose, large opposing corrections nearly cancel
 
 The correction is strongly dose-dependent. At the simulated 4 g single dose
-the measured gradients reduce the pericentral adduct burden by a median 92%
-(90% simulation interval −97 to −81%), and this is robust: all 400 Monte Carlo
-draws give a reduction. At the simulated 16 g single dose the net response is small and
-uncertain (median −4%, interval −20 to +11%), with 65% of draws protective and
-35% aggravating (Fig. 4); the peak pericentral adduct moves from 5.5 × 10⁻³ to
-4.5 × 10⁻³ nmol per hepatocyte (1.04% to 0.86% of the dose). This is not because
+the measured gradients reduce the pericentral adduct burden by a median 93%
+(90% simulation interval −96 to −89%), and this is robust: all 300 Monte Carlo
+draws give a reduction. An intermediate simulated dose (8 g) shows a smooth
+transition (median −37%, interval −43 to −30%; 100% protective). At the
+simulated 16 g single dose the net response is small and uncertain (median −7%,
+interval −13 to +0.3%), with 94% of draws protective and 6% aggravating
+(Fig. 4); the point-estimate peak pericentral adduct moves from 5.5 × 10⁻³ to
+5.6 × 10⁻³ nmol per hepatocyte (1.04% to 1.06% of the dose). This is not because
 zonation ceases to matter at overdose: each gradient still moves the prediction
 substantially (Table 3). Rather, the protective corrections — the
-glutathione-synthesis gradient (−27%) and the CYP gradient (−21%) — are nearly
+glutathione-synthesis gradient (−27%) and, to a lesser extent, the CYP gradient
+(−7%) — are nearly
 cancelled by the aggravating glucuronidation correction (+50%), because a
 shallower glucuronidation gradient leaves more APAP available for oxidation. The
 net response is small and uncertain precisely because large effects oppose each
-other.
+other. The conclusion is also insensitive to the exact stylised values of the
+assumed gradients: re-running the 4 g comparison against 27 variants of the
+assumed folds (CYP 3–7×; UGT and the periportal gradients 6–12×) gives a median
+reduction of −89% (range −92 to −86%), protective in all variants.
 
-[[FIG fig4_uncertainty.png | Stability of the gradient replacement under uncertainty (400 Monte Carlo draws over the isoform and protein–mRNA fold ranges). Left (4 g): the measured gradients robustly reduce pericentral adducts (median −92%, 90% simulation interval −97 to −81%; 100% of draws protective). Right (16 g): the net response is small and uncertain because large opposing corrections cancel (median −4%, interval −20 to +11%; 65% protective / 35% aggravating).]]
+[[FIG fig4_uncertainty.png | Stability of the gradient replacement under uncertainty (300 Monte Carlo draws per dose over the isoform-weighted CYP, UGT and protein–mRNA fold ranges). Left to right: simulated 4, 8 and 16 g single doses. The reduction is robust at 4 g (median −93%, 90% simulation interval −96 to −89%) and 8 g (−37%, −43 to −30%; 100% of draws protective in both), and fades to a small, uncertain net response at 16 g (−7%, −13 to +0.3%; 94% protective / 6% aggravating).]]
 
 **Table 3 — One-at-a-time effect on pericentral peak adducts (simulated single doses).**
 
-| Change (assumed → measured) | Δ at 4 g | Δ at 16 g |
-|---|---|---|
-| kG: glucuronidation 9× → 1.4× | +52% | +50% |
-| bG: GSH synthesis periportal → unzonated | −83% | −27% |
-| k450: CYP 5× → 1.9× | −25% | −21% |
-| kS: sulfation periportal → unzonated | −9% | −1% |
-| kGSH: GST flip → weakly pericentral | −4% | −1% |
+| Change (assumed → measured) | Δ at 4 g | Δ at 8 g | Δ at 16 g |
+|---|---|---|---|
+| kG: glucuronidation 9× → 1.4× | +52% | +50% | +50% |
+| bG: GSH synthesis periportal → unzonated | −83% | −50% | −27% |
+| k450: CYP 5× → 3.4× (isoform-weighted) | −8.5% | −7.6% | −7.2% |
+| kS: sulfation periportal → unzonated | −9% | −4% | −1% |
+| kGSH: GST flip → weakly pericentral | −4% | −2% | −1% |

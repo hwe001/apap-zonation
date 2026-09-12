@@ -30,17 +30,21 @@
    mathematical model of acetaminophen metabolism and toxicity. J Theor Biol.
    2015;386:132–146. doi:10.1016/j.jtbi.2015.08.021.
 
-8. Shoda LKM, Battista C, Siler SQ, Pisetsky DS, Watkins PB, Howell BA.
+8. Laine JE, Auriola S, Pasanen M, Juvonen RO. Acetaminophen bioactivation by
+   human cytochrome P450 enzymes and animal microsomes. Xenobiotica.
+   2009;39(1):11–21. doi:10.1080/00498250802512830.
+
+9. Shoda LKM, Battista C, Siler SQ, Pisetsky DS, Watkins PB, Howell BA.
    Mechanistic modelling of drug-induced liver injury: investigating the role of
    innate immune responses. Gene Regul Syst Biol. 2017;11:1177625017696074.
    doi:10.1177/1177625017696074.
 
-9. Weiss CAM, Brown LA, Miranda L, Pellizzoni P, Steigerwald S, Remmert K,
+10. Weiss CAM, Brown LA, Miranda L, Pellizzoni P, Steigerwald S, Remmert K,
    Hernandez JM, Borgwardt K, Kleiner DE, Ben-Moshe S, Rosenberger FA,
    Porat-Shliom N, Mann M. Single-cell spatial proteomics maps human liver
    zonation patterns and their vulnerability to disruption in tissue
    architecture. Nat Metab. 2026;8(3):741–756. doi:10.1038/s42255-026-01459-2.
 
-10. Yakubovsky O, Bahar Halpern K, Shir S, et al. A spatial atlas of the healthy
+11. Yakubovsky O, Bahar Halpern K, Shir S, et al. A spatial atlas of the healthy
     human liver from live donors. Nature. 2026;653(8116):1148–1157.
     doi:10.1038/s41586-026-10377-y.

@@ -113,7 +113,11 @@ SCHEMES = {
         # recalibrated from DVP binned intensity profiles (protein-level fold =
         # central-end / portal-end bins; NOT the robust-scaled coefficient).
         # Protein abundance is a proxy for catalytic capacity (assumption, stated).
-        "k450": am_fold(1.91, True),   # CYP2E1 (protein); CYP1A2 6.9x, CYP3A4 3.5x
+        # k450 uses the isoform-abundance-weighted fold: CYP2E1/1A2/3A4 protein
+        # folds 1.91/6.87/3.52 weighted 0.60/0.25/0.15 by their approximate
+        # relative contribution to human APAP oxidation (Laine et al. 2009):
+        #   0.60*1.91 + 0.25*6.87 + 0.15*3.52 = 3.39
+        "k450": am_fold(3.39, True),   # weighted CYP (2E1 0.60, 1A2 0.25, 3A4 0.15)
         "kG":   am_fold(1.44, True),   # UGT2B7 (protein); UGT1A6 1.8x, UGT1A1 2.1x
         "kS":   (1.0, 1.0),            # SULT1A1 unzonated (fold 0.99x)
         "kGSH": am_fold(1.16, True),   # GSTA2 pericentral (protein fold 1.16x)

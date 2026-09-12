@@ -184,10 +184,10 @@ def fig2_gradients():
 
 
 def fig3_damage():
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.9), sharey=True)
+    fig, axes = plt.subplots(1, 3, figsize=(9.6, 2.7), sharey=True)
     x = np.arange(1, N_HEPATOCYTES + 1)
 
-    for ax, dose in zip(axes, (4.0, 16.0)):
+    for ax, dose in zip(axes, (4.0, 8.0, 16.0)):
         p0 = dose_to_p0(dose)
         for scheme, color, ls, lab in [("assumed", ASSUMED, "--", "assumed"),
                                         ("measured", MEASURED, "-", "measured")]:
@@ -205,7 +205,7 @@ def fig3_damage():
     handles = [Line2D([], [], color=ASSUMED, ls="--", lw=2, label="assumed"),
                Line2D([], [], color=MEASURED, ls="-", lw=2, label="measured")]
     fig.legend(handles=handles, loc="upper left", fontsize=8, frameon=False,
-               bbox_to_anchor=(0.12, 0.98))
+               bbox_to_anchor=(0.09, 0.99))
 
     fig.savefig(FIGDIR / "fig3_damage.png")
     plt.close(fig)
@@ -217,13 +217,14 @@ def fig4_uncertainty():
         print("  (skip fig4: run code/uncertainty.py first)")
         return
     data = np.load(npz_path)
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.8))
+    fig, axes = plt.subplots(1, 3, figsize=(9.6, 2.7))
 
-    for ax, dose, key in zip(axes, (4.0, 16.0), ("changes_4g", "changes_16g")):
+    for ax, dose, key in zip(axes, (4.0, 8.0, 16.0),
+                             ("changes_4g", "changes_8g", "changes_16g")):
         changes = data[key]
         med = np.median(changes)
         lo, hi = np.percentile(changes, [5, 95])
-        ax.hist(changes, bins=26, color=BLUE, alpha=0.75, edgecolor="white", lw=0.3)
+        ax.hist(changes, bins=24, color=BLUE, alpha=0.75, edgecolor="white", lw=0.3)
         ax.axvline(0, color=INK2, lw=1)
         ax.axvline(med, color=ORANGE, lw=1.5, ls="--")
         ax.set_title(f"{dose:.0f} g", fontsize=9.5)
@@ -233,7 +234,7 @@ def fig4_uncertainty():
         prot = (changes < 0).mean() * 100
         ax.text(0.97, 0.96, f"median {med:+.0f}%\n90% interval [{lo:+.0f}, {hi:+.0f}]\n"
                             f"{prot:.0f}% protective",
-                transform=ax.transAxes, ha="right", va="top", fontsize=7.5, color=INK2)
+                transform=ax.transAxes, ha="right", va="top", fontsize=7, color=INK2)
 
     axes[0].set_ylabel("Monte Carlo draws", fontsize=8)
     fig.savefig(FIGDIR / "fig4_uncertainty.png")

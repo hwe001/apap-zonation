@@ -67,11 +67,11 @@ Carlo samples each fold log-uniformly over its range (400 draws):
 
 | parameter | isoform used | point fold | MC range | basis of range |
 |---|---|---|---|---|
-| k450 (CYP450) | CYP2E1 | 1.91 | 1.9 - 6.9 | isoform span CYP2E1..CYP1A2 |
+| k450 (CYP450) | CYP2E1/1A2/3A4 weighted 0.60/0.25/0.15 | 3.39 | sampled via weight vector (2E1 0.50-0.70, 1A2 0.15-0.30, 3A4 remainder) | weights = approximate relative contribution to human APAP oxidation (Laine et al. 2009); raw isoform folds 1.91/6.87/3.52 |
 | kG (UGT) | UGT2B7 | 1.44 | 1.4 - 2.1 | isoform span UGT2B7..UGT1A1 |
-| kS (SULT) | SULT1A1 | 0.99 | 0.9 - 1.1 | not significant (q=0.12); +/-10% around uniform |
+| kS (SULT) | SULT1A1 | 0.99 | 0.9 - 1.1 | not significant (q=0.12); +/-10% around uniform (stated assumption) |
 | kGSH (GST) | GSTA2 | 1.16 | 1.16 - 3.4 | protein fold .. mRNA ratio (Yakubovsky 2026) |
-| bG (GSH synthesis) | GCLC/GCLM/GSS | ~1.0 | 0.9 - 1.1 | coefficients ~0; +/-10% around uniform |
+| bG (GSH synthesis) | GCLC/GCLM/GSS | ~1.0 | 0.9 - 1.1 | coefficients ~0; +/-10% around uniform (stated assumption) |
 
 Donor-level variation is not propagated at this stage: the bin profiles are
 cohort-level means across the 14 healthy donors, and the published supplement

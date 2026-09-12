@@ -3,8 +3,9 @@
 **The stability boundary is the finding.** Replacing the assumed zonation
 gradients with measured human profiles produces a sharply dose-dependent answer:
 at the simulated 4 g single dose the predicted pericentral adduct burden
-falls by ~90% (90% simulation interval −97 to −81%), while at the simulated 16 g single dose the
-net response is small and uncertain (median −4%, interval −20 to +11%). The
+falls by ~93% (90% simulation interval −96 to −89%), at the simulated 8 g single
+dose by ~37% (interval −43 to −30%), while at the simulated 16 g single dose the
+net response is small and uncertain (median −7%, interval −13 to +0.3%). The
 assumed gradients therefore overestimate the pericentral adduct burden at low
 dose, but at high dose their replacement produces large, offsetting effects
 rather than a robust net change. This is not a recalibration result that happens
@@ -16,9 +17,9 @@ glutathione-synthesis gradient and the CYP gradient. The assumed gradients place
 glutathione synthesis strongly periportal (9×), so pericentral cells begin with
 far less glutathione; measured GCLC/GCLM/GSS are essentially unzonated, so
 pericentral glutathione is higher than assumed. The assumed CYP gradient (5×) is
-also steeper than the measured CYP2E1 fold (1.9×), although CYP1A2 (6.9×) is
-steeper, which is why the CYP correction contributes uncertainty rather than a
-clean sign. At the simulated 4 g single dose these two corrections reduce pericentral
+also steeper than the isoform-weighted measured fold (3.4×); because CYP2E1
+dominates human APAP oxidation, the abundance weighting narrows the CYP
+uncertainty to a modest, consistently protective correction. At the simulated 4 g single dose these two corrections reduce pericentral
 NAPQI formation and increase its detoxification, cutting adducts ~90%. At
 overdose, glutathione is depleted in every cell, which weakens the
 glutathione-synthesis correction (−27% at 16 g versus −83% at 4 g), so it no
@@ -30,9 +31,12 @@ moves the prediction by tens of percent — but that the individual effects oppo
 each other, so their sum is small and uncertain.
 
 **Comparison with the state of the art.** Prior zonated acetaminophen models —
-our own Means & Ho (2019) and Franiatte et al. (2019), and the 5,114-cell lobule
-of Ghosh et al. (2026) — all impose the same qualitative, Gebhardt-derived
-gradients and report point predictions from them; none has tested which of their
+our own Means & Ho (2019) and Franiatte et al. (2019), which impose
+Gebhardt-derived linear gradients, and the 5,114-cell lobule of Ghosh et al.
+(2026), which builds zonation from hypothesis-based incremental percentages —
+all construct their zonal enzyme profiles from the literature rather than
+measurement, and report point predictions from them; none has tested which of
+their
 conclusions survive replacing the gradient with measurement, and the largest
 states explicitly that no genomic or proteomic data were integrated. Whole-liver
 quantitative-systems-toxicology platforms such as DILIsym omit zonation entirely,
@@ -53,7 +57,10 @@ describe scenario uncertainty over fold ranges, not donor-level sampling
 uncertainty. The model is a 16-cell
 sinusoid without transport, so it quantifies the consequences of the gradients
 but cannot resolve transport-coupled questions; we deliberately frame it as a
-zonation-sensitivity study rather than a full reconstruction. The adduct
+zonation-sensitivity study rather than a full reconstruction, and the stability
+boundary established here holds for this reduced system — whether it persists in
+transport-coupled lobule models is untested and is precisely what the stability
+test is designed to assess. The adduct
 compartment is a proxy for injury, not necrosis itself, and its elimination rate
 is a calibrated input, not a validated output.
 

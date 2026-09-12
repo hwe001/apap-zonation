@@ -27,7 +27,7 @@ def build_data():
     data = {}
     for scheme in ("assumed", "measured"):
         data[scheme] = {}
-        for dose in (4.0, 16.0):
+        for dose in (4.0, 8.0, 16.0):
             t, Y, _ = run(scheme, dose, t_end_days=3.0, n_points=400, rtol=1e-5, atol=1e-8)
             idx = np.linspace(0, len(t) - 1, N_TIMES).astype(int)
             times = t[idx].round(3).tolist()
@@ -90,6 +90,7 @@ HTML = """<!doctype html>
   <div class="group" id="dose-group">
     <label>Dose</label>
     <button class="btn" data-dose="4">4 g</button>
+    <button class="btn" data-dose="8">8 g</button>
     <button class="btn on" data-dose="16">16 g</button>
   </div>
   <div class="group">
