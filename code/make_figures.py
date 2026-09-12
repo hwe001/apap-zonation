@@ -231,7 +231,7 @@ def fig4_uncertainty():
         ax.tick_params(labelsize=8)
         ax.grid(True, lw=0.6, axis="y")
         prot = (changes < 0).mean() * 100
-        ax.text(0.97, 0.96, f"median {med:+.0f}%\n90% CI [{lo:+.0f}, {hi:+.0f}]\n"
+        ax.text(0.97, 0.96, f"median {med:+.0f}%\n90% interval [{lo:+.0f}, {hi:+.0f}]\n"
                             f"{prot:.0f}% protective",
                 transform=ax.transAxes, ha="right", va="top", fontsize=7.5, color=INK2)
 

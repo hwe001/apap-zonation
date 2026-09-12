@@ -17,10 +17,12 @@ those enzymes; this work replaces them with *measured* human single-cell spatial
 proteomics and asks a stability question: **which predictions survive the
 replacement, and which do not?**
 
-The headline result is dose-dependent: at the therapeutic dose the assumed
-gradients overestimate pericentral injury (~90% over-correction), while at
-overdose the gradient assumptions become irrelevant because glutathione
-saturation governs the prediction.
+The headline result is dose-dependent: at the therapeutic single dose (4 g) the
+assumed gradients overestimate the pericentral adduct burden (~90% over-correction),
+while at overdose (16 g) the individual gradient corrections remain large but
+**oppose each other** — the shallower glutathione-synthesis and CYP gradients
+reduce adducts, the shallower glucuronidation gradient increases them — so the
+net response is small and uncertain.
 
 ## Try it in your browser — no installation
 
@@ -32,7 +34,9 @@ per-hepatocyte time courses as interactive heatmaps with:
 - an **assumed vs measured** gradient toggle,
 - a **dose** selector (4 g and 16 g).
 
-The data are precomputed and embedded, so the file is fully self-contained.
+The data are precomputed and embedded, so the file is fully self-contained. It is
+a companion for *inspecting* the results, not evidence that validates the model —
+the manuscript's figures and numerical results are self-contained.
 
 ## Reproduce the results
 
@@ -67,6 +71,17 @@ not from its published regression coefficients (which are not fold changes).
 See `data/measured_zonation_coefficients.md` for the conversion and the full
 table. Protein abundance is a proxy for catalytic capacity; no lobule-resolved
 activity data exist.
+
+## Code and data availability
+
+The model code, fold-derivation inputs, figures, and the interactive viewer are in
+this repository. `viewer.html` displays **precomputed** simulations (not live
+model runs) of the five species across the 16 hepatocytes, both doses, and both
+gradient schemes. The measured zonation folds are re-derived from the
+single-cell deep-visual proteomics bin profiles (Weiss et al., *Nat Metab* 2026)
+as documented in `data/measured_zonation_coefficients.md` and
+`data/fold_derivation.md`. A versioned archive (DOI) of the submission version
+will be cited in the paper; the GitHub link points to the current version.
 
 ## License
 
