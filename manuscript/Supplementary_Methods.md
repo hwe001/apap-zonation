@@ -92,4 +92,3 @@ markers of the urea cycle and histidine catabolism) yield folds < 1
 - AMDHD1: fold = 0.40 (coefficient 1.98)
 - CYP1A2: fold = 6.87 (coefficient -2.20)
 - CYP3A4: fold = 3.52 (coefficient -1.60)
-- AMDHD1: fold = 0.40 (coefficient 1.98)

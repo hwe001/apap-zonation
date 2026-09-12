@@ -19,12 +19,15 @@ TITLE = ("How much does assumed enzyme zonation matter for predicted "
          "human profiles")
 SUBTITLE = ""
 
-FILES = [
+MAIN_FILES = [
     "manuscript/front_matter.md",
     "manuscript/Introduction_draft.md",
     "manuscript/Methods_Results_draft.md",
     "manuscript/Discussion_draft.md",
     "manuscript/References_draft.md",
+]
+
+SUPP_FILES = [
     "manuscript/Supplementary_Methods.md",
 ]
 
@@ -255,32 +258,40 @@ def process_file(doc, path):
     flush_table()
 
 
-def main():
-    doc = Document()
+SUPP_TITLE = ("Supplementary Methods for: " + TITLE)
 
+
+def build(files, out_name, title, subtitle=""):
+    doc = Document()
     style = doc.styles["Normal"]
     style.font.name = "Calibri"
     style.font.size = Pt(11)
 
     tp = doc.add_paragraph()
     tp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = tp.add_run(TITLE)
+    r = tp.add_run(title)
     r.bold = True
     r.font.size = Pt(15)
-    if SUBTITLE:
+    if subtitle:
         sp = doc.add_paragraph()
         sp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        sr = sp.add_run(SUBTITLE)
+        sr = sp.add_run(subtitle)
         sr.italic = True
         sr.font.size = Pt(10)
         sr.font.color.rgb = RGBColor(0x66, 0x66, 0x66)
 
-    for fname in FILES:
+    for fname in files:
         process_file(doc, BASE / fname)
 
-    out = BASE / "manuscript_draft.docx"
+    out = BASE / out_name
     doc.save(out)
     print(f"wrote {out.resolve()}  ({len(doc.paragraphs)} paragraphs, {len(doc.tables)} tables)")
+
+
+def main():
+    build(MAIN_FILES, "manuscript_draft.docx", TITLE, SUBTITLE)
+    build(SUPP_FILES, "supplementary_methods.docx", SUPP_TITLE,
+          "Separate supplementary file — not part of the main manuscript")
 
 
 if __name__ == "__main__":

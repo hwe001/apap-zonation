@@ -41,9 +41,9 @@ are not fold changes — and document the conversion and its uncertainty (Sectio
 folds on the 16-hepatocyte model with total enzyme
 conserved, and propagate isoform and protein–mRNA uncertainty by Monte Carlo
 (Sections 2.4–2.5). Third, we report which predictions survive (Section 3). The
-result is a dose-dependent stability boundary: at the therapeutic single dose the
+result is a dose-dependent stability boundary: at the simulated 4 g single dose the
 assumed gradients robustly overestimate the pericentral adduct burden, whereas at
-overdose the individual gradient corrections remain large but oppose each other,
+the simulated 16 g single dose the individual gradient corrections remain large but oppose each other,
 so the net response is small and uncertain. We close by discussing what this
 stability test contributes as a method for zonated toxicity models generally
 (Section 4).

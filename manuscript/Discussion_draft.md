@@ -2,8 +2,8 @@
 
 **The stability boundary is the finding.** Replacing the assumed zonation
 gradients with measured human profiles produces a sharply dose-dependent answer:
-at the therapeutic single dose (4 g) the predicted pericentral adduct burden
-falls by ~90% (90% simulation interval −97 to −81%), while at overdose (16 g) the
+at the simulated 4 g single dose the predicted pericentral adduct burden
+falls by ~90% (90% simulation interval −97 to −81%), while at the simulated 16 g single dose the
 net response is small and uncertain (median −4%, interval −20 to +11%). The
 assumed gradients therefore overestimate the pericentral adduct burden at low
 dose, but at high dose their replacement produces large, offsetting effects
@@ -18,7 +18,7 @@ far less glutathione; measured GCLC/GCLM/GSS are essentially unzonated, so
 pericentral glutathione is higher than assumed. The assumed CYP gradient (5×) is
 also steeper than the measured CYP2E1 fold (1.9×), although CYP1A2 (6.9×) is
 steeper, which is why the CYP correction contributes uncertainty rather than a
-clean sign. At the therapeutic dose these two corrections reduce pericentral
+clean sign. At the simulated 4 g single dose these two corrections reduce pericentral
 NAPQI formation and increase its detoxification, cutting adducts ~90%. At
 overdose, glutathione is depleted in every cell, which weakens the
 glutathione-synthesis correction (−27% at 16 g versus −83% at 4 g), so it no
@@ -59,7 +59,7 @@ is a calibrated input, not a validated output.
 
 **Conclusion.** For a model of acetaminophen hepatotoxicity, the answer to "how
 much does assumed zonation matter?" is dose-dependent and more subtle than a
-single statement. At the therapeutic single dose (4 g) the assumed gradients
+single statement. At the simulated 4 g single dose the assumed gradients
 substantially overestimate the pericentral adduct burden, and replacing them with
 measured profiles reduces it by ~90%. At overdose (16 g) the individual gradient
 corrections remain large — the glutathione-synthesis and CYP corrections reduce

@@ -127,7 +127,7 @@ folds jointly.
 
 ## Results
 
-### 3.1 Measured zonation is systematically shallower than assumed
+### 3.1 Measured zonation is mostly shallower than assumed
 
 The measured human zonation disagrees with the literature-derived gradients in
 direction and magnitude (Table 2, Fig. 2). Three enzymes are unzonated or nearly
@@ -142,10 +142,10 @@ spread that makes the CYP correction the largest source of uncertainty.
 
 [[FIG fig2_gradients.png | Assumed versus measured zonation gradients for the five enzyme parameters, as a fold-change relative to a uniform baseline (1×). Orange dashed: the literature-derived gradient carried by prior models; blue solid: the gradient re-derived from the 2026 proteomic bin profiles. Sulfation and GSH synthesis are unzonated; GSH conjugation is reversed (weakly pericentral); CYP450 and glucuronidation retain direction but are far shallower than assumed.]]
 
-### 3.2 Gradient replacement reduces predicted pericentral adducts at the therapeutic dose
+### 3.2 Gradient replacement reduces predicted pericentral adducts at the simulated 4 g single dose
 
 Replacing the assumed gradients with the measured ones reduces the predicted
-pericentral adduct burden at the therapeutic single dose (4 g) by 96% (Table 3):
+pericentral adduct burden at the simulated 4 g single dose by 96% (Table 3):
 the peak pericentral adduct falls from 1.1 × 10⁻³ to 4.7 × 10⁻⁵ nmol per
 hepatocyte (0.83% to 0.036% of the dose). The
 reduction is dominated by two corrections: flattening the glutathione-synthesis
@@ -155,14 +155,14 @@ correction (+52%) acts in the opposite direction — a shallower glucuronidation
 gradient leaves more APAP available for oxidation — but is outweighed by the
 glutathione and CYP effects.
 
-[[FIG fig3_damage.png | Predicted peak adduct fraction of dose along the sinusoid at 4 g and 16 g, for the assumed (orange dashed) and measured (blue solid) gradients. At the therapeutic dose the measured gradients predict a substantially lower, less sharply zoned pericentral adduct burden; at overdose the two are similar.]]
+[[FIG fig3_damage.png | Predicted peak adduct fraction of dose along the sinusoid at 4 g and 16 g, for the assumed (orange dashed) and measured (blue solid) gradients. At the simulated 4 g single dose the measured gradients predict a substantially lower, less sharply zoned pericentral adduct burden; at the simulated 16 g single dose the two are similar.]]
 
 ### 3.3 At overdose, large opposing corrections nearly cancel
 
-The correction is strongly dose-dependent. At the therapeutic single dose (4 g)
+The correction is strongly dose-dependent. At the simulated 4 g single dose
 the measured gradients reduce the pericentral adduct burden by a median 92%
 (90% simulation interval −97 to −81%), and this is robust: all 400 Monte Carlo
-draws give a reduction. At overdose (16 g) the net response is small and
+draws give a reduction. At the simulated 16 g single dose the net response is small and
 uncertain (median −4%, interval −20 to +11%), with 65% of draws protective and
 35% aggravating (Fig. 4); the peak pericentral adduct moves from 5.5 × 10⁻³ to
 4.5 × 10⁻³ nmol per hepatocyte (1.04% to 0.86% of the dose). This is not because
@@ -176,7 +176,7 @@ other.
 
 [[FIG fig4_uncertainty.png | Stability of the gradient replacement under uncertainty (400 Monte Carlo draws over the isoform and protein–mRNA fold ranges). Left (4 g): the measured gradients robustly reduce pericentral adducts (median −92%, 90% simulation interval −97 to −81%; 100% of draws protective). Right (16 g): the net response is small and uncertain because large opposing corrections cancel (median −4%, interval −20 to +11%; 65% protective / 35% aggravating).]]
 
-**Table 3 — One-at-a-time effect on pericentral peak adducts.**
+**Table 3 — One-at-a-time effect on pericentral peak adducts (simulated single doses).**
 
 | Change (assumed → measured) | Δ at 4 g | Δ at 16 g |
 |---|---|---|
