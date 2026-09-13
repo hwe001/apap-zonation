@@ -20,3 +20,6 @@ hepatotoxicity_validation_data.md
 ~$*
 *_check*.txt
 *.tmp
+
+# Local working copies
+figures/*Copy*

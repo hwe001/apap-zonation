@@ -124,7 +124,8 @@ re-ran the 4 g comparison against 27 variants of the assumed gradients (CYP
 
 ### 2.5 Numerical analysis
 
-The 80-variable ODE system was integrated with a stiff Radau solver
+The coupled ODE system — 16 hepatocytes × 5 intracellular species = 80 state
+variables — was integrated with a stiff Radau solver
 (`solve_ivp`, rtol 10⁻⁵, atol 10⁻⁸) over 3 days (the adduct peak occurs within the
 first day; results are unchanged at tighter tolerances). Reported quantities are
 the peak adduct concentration per hepatocyte (C_pk) and its pericentral value.

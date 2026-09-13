@@ -70,8 +70,8 @@ def ramp(mp, mc):
 
 
 def fig1_schematic():
-    fig = plt.figure(figsize=(7.2, 2.9))
-    gs = fig.add_gridspec(1, 2, width_ratios=[1.7, 1], wspace=0.30)
+    fig = plt.figure(figsize=(9.0, 3.3))
+    gs = fig.add_gridspec(1, 2, width_ratios=[1.25, 1], wspace=0.18)
 
     # --- left: sinusoid with 16 hepatocytes -------------------------------
     ax = fig.add_subplot(gs[0])
@@ -81,17 +81,17 @@ def fig1_schematic():
 
     ax.add_patch(Rectangle((0, 3.4), 16, 0.42, facecolor=GRID, edgecolor=BASELINE, lw=0.8))
     ax.annotate("", xy=(16, 3.61), xytext=(0, 3.61),
-                arrowprops=dict(arrowstyle="-|>", lw=1.6, color=MUTED))
+                arrowprops=dict(arrowstyle="-|>", lw=1.6, color=INK2))
     ax.text(8, 3.87, "sinusoidal blood flow", ha="center", va="bottom",
-            fontsize=8, color=MUTED)
+            fontsize=8, color=INK2)
 
     for i in range(N_HEPATOCYTES):
         frac = i / (N_HEPATOCYTES - 1)
         ax.add_patch(Rectangle((i, 1.55), 0.92, 1.05,
                                facecolor=plt.cm.Blues(0.35 + 0.55 * frac),
                                edgecolor=BASELINE, lw=0.6))
-    ax.text(0, 1.1, "1 (periportal)", ha="left", fontsize=7.5, color=MUTED)
-    ax.text(16, 1.1, "16 (pericentral)", ha="right", fontsize=7.5, color=MUTED)
+    ax.text(0, 1.1, "1 (periportal)", ha="left", fontsize=7.5, color=INK2)
+    ax.text(16, 1.1, "16 (pericentral)", ha="right", fontsize=7.5, color=INK2)
 
     ax.text(0, 2.85, "Zone 1\n(periportal)", ha="left", va="center", fontsize=7.5, color=INK2)
     ax.text(16, 2.85, "Zone 3\n(pericentral)", ha="right", va="center", fontsize=7.5, color=INK2)
@@ -99,45 +99,49 @@ def fig1_schematic():
     ax.text(0, 4.15, "portal vein", ha="left", fontsize=8, color=INK)
     ax.text(16, 4.15, "central vein", ha="right", fontsize=8, color=INK)
 
-    # --- right: intracellular reaction tree --------------------------------
+    # --- right: intracellular reaction scheme ------------------------------
+    # All text in high-contrast ink (no grey). Node boxes auto-size around
+    # their text (bbox annotations), so species names never overflow.
     ax = fig.add_subplot(gs[1])
-    ax.set_xlim(0, 4.5)
-    ax.set_ylim(0, 4.3)
+    ax.set_xlim(0, 12.4)
+    ax.set_ylim(0, 10)
     ax.axis("off")
 
-    def node(x, y, s, fc="white", fs=7.5):
-        ax.add_patch(FancyBboxPatch((x - 0.48, y - 0.27), 0.96, 0.54,
-                                    boxstyle="round,pad=0.03",
-                                    facecolor=fc, edgecolor=BASELINE, lw=0.7))
-        ax.text(x, y, s, ha="center", va="center", fontsize=fs, color=INK)
+    def node(x, y, s, fc="white", fs=8.5):
+        ax.text(x, y, s, ha="center", va="center", fontsize=fs,
+                color=INK, fontweight="bold", zorder=3,
+                bbox=dict(boxstyle="round,pad=0.4", facecolor=fc,
+                          edgecolor=INK2, lw=0.9))
 
     def arrow(x1, y1, x2, y2):
         ax.add_patch(FancyArrowPatch((x1, y1), (x2, y2), arrowstyle="-|>",
-                                     mutation_scale=7, lw=1.1, color=MUTED))
+                                     mutation_scale=9, lw=1.3, color=INK2,
+                                     zorder=1))
 
-    def lab(x, y, s):
-        ax.text(x, y, s, fontsize=6.5, color=MUTED, ha="center", va="center")
+    def lab(x, y, s, fs=8):
+        ax.text(x, y, s, fontsize=fs, color=INK2, ha="center", va="center",
+                zorder=2)
 
-    node(2.25, 4.0, "APAP  (P)")
-    node(0.8, 2.7, "APAP-sulfate")
-    node(2.25, 2.7, "APAP-\nglucuronide")
-    node(3.7, 2.7, "NAPQI  (N)")
-    node(2.45, 1.15, "APAP-GSH\ndetoxified")
-    node(3.9, 1.15, "adducts  (C)", fc="#f7d4d1")
+    node(5.8, 8.9, "APAP  (P)")
+    node(1.5, 5.0, "APAP–sulfate")
+    node(5.8, 5.0, "APAP–\nglucuronide")
+    node(10.3, 5.0, "NAPQI  (N)")
+    node(6.9, 1.5, "APAP–GSH\n(detoxified)", fs=8)
+    node(10.9, 1.5, "Protein\nadducts  (C)", fc="#f7d4d1", fs=8)
 
-    arrow(2.25, 3.73, 0.8, 2.97)
-    arrow(2.25, 3.73, 2.25, 2.97)
-    arrow(2.25, 3.73, 3.7, 2.97)
-    arrow(3.7, 2.43, 2.45, 1.42)
-    arrow(3.7, 2.43, 3.9, 1.42)
+    arrow(5.8, 8.9, 1.5, 5.95)
+    arrow(5.8, 8.9, 5.8, 5.95)
+    arrow(5.8, 8.9, 10.3, 5.95)
+    arrow(10.3, 5.0, 6.9, 2.5)
+    arrow(10.3, 5.0, 10.9, 2.5)
 
-    lab(1.35, 3.5, "SULT")
-    lab(2.25, 3.5, "UGT")
-    lab(3.15, 3.5, "CYP450")
-    lab(2.8, 1.95, "+ GSH")
-    lab(4.15, 1.95, "kPSH")
+    lab(2.2, 7.2, "SULT\n(kS)")
+    lab(5.8, 7.2, "UGT\n(kG)")
+    lab(9.5, 7.2, "CYP450\n(k450)")
+    lab(7.3, 3.6, "+ GSH\n(kGSH)")
+    lab(11.3, 3.6, "(kPSH)")
 
-    ax.set_title("Intracellular kinetics", fontsize=9, color=INK2, pad=6)
+    ax.set_title("Intracellular kinetics (per hepatocyte)", fontsize=9, color=INK2, pad=6)
 
     fig.savefig(FIGDIR / "fig1_schematic.png")
     plt.close(fig)
