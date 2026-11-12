@@ -16,13 +16,13 @@ was added separately in Franiatte/Ho/Clarke 2019 and is out of scope here).
 Zonated parameters and their measured directions (see
 ../measured_zonation_coefficients.md for the extracted numbers):
 
-    parameter   assumed (Gebhardt/2018/2026)        measured (2026 human)
+    parameter   assumed (Gebhardt/2018/2026)        measured (2026 human; see SCHEMES)
     --------    -------------------------------     ----------------------
-    k450        pericentral (~5x)                   pericentral (confirmed, 5.4x)
-    kG          pericentral (~9x)                   pericentral (confirmed, ~2.5x)
-    kS          periportal  (~9x)                   UNZONATED  (flattened)
-    kGSH        periportal  (~9x)                   PERICENTRAL (FLIPPED, 3.4x)
-    bG (GSH)    periportal  (~9x)                   UNZONATED  (flattened)
+    k450        pericentral (~5x)                   pericentral (isoform-weighted, 3.39x)
+    kG          pericentral (~9x)                   pericentral (UGT2B7, 1.44x)
+    kS          periportal  (~9x)                   UNZONATED  (SULT1A1, 0.99x)
+    kGSH        periportal  (~9x)                   PERICENTRAL (FLIPPED, GSTA2 1.16x)
+    bG (GSH)    periportal  (~9x)                   UNZONATED  (GCLC/GCLM/GSS ~1.0x)
 
 The headline hypothesis: reversing kGSH (and flattening kS/bG) reduces the
 predicted pericentral toxic-adduct hotspot -- i.e. the zone the model says is
@@ -197,16 +197,26 @@ def perturb_assumed(param: str) -> dict:
     return s
 
 
+def peak_central(Y) -> float:
+    """Peak (maximum over time) adduct amount in the pericentral hepatocyte."""
+    return float(Y[:, -1, 4].max())
+
+
 def decompose(dose_grams: float) -> None:
-    """One-at-a-time attribution: % change in pericentral C from moving a single
-    parameter from its assumed to its measured gradient."""
+    """One-at-a-time attribution: % change in PEAK pericentral C from moving a
+    single parameter from its assumed to its measured gradient.
+
+    Revision note (v1.2.0): this previously used the adduct value at t_end (5 d),
+    which differs from the peak used by uncertainty.py and Fig. 3; both now use the
+    peak so Table 3 and the Monte Carlo share one metric.
+    """
     _, Y_base, _ = run("assumed", dose_grams)
-    base_central = summarize(None, Y_base)[2]["central_C"]
-    print(f"  One-at-a-time (baseline assumed central_C = {base_central:.4g}):")
+    base_central = peak_central(Y_base)
+    print(f"  One-at-a-time (baseline assumed peak central_C = {base_central:.4g}):")
     for param in ("k450", "kG", "kS", "kGSH", "bG"):
         _, Y_pert, _ = run(perturb_assumed(param), dose_grams)
-        c = summarize(None, Y_pert)[2]["central_C"]
-        print(f"    {param:6s} -> measured: central_C={c:.4g}  "
+        c = peak_central(Y_pert)
+        print(f"    {param:6s} -> measured: peak central_C={c:.4g}  "
               f"({(c / base_central - 1) * 100:+.1f}%)")
 
 
