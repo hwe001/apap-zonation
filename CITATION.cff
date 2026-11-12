@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "apap-zonation: stability analysis of assumed versus measured enzyme zonation in a 16-hepatocyte acetaminophen model"
+version: 1.2.0
+authors:
+  - family-names: Ho
+    given-names: Harvey
+  - family-names: Zhang
+    given-names: En
+license: MIT
+repository-code: "https://github.com/hwe001/apap-zonation"
+# doi: add the Zenodo version DOI after the release is archived
